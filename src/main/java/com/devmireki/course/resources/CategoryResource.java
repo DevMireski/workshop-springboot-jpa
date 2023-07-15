@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devmireki.course.entities.Category;
+import com.devmireki.course.repositories.CategoryRepository;
 import com.devmireki.course.services.CategoryService;
 
 @RestController
@@ -18,10 +19,13 @@ public class CategoryResource {
 
 	@Autowired 
 	private CategoryService service;
+	
+	@Autowired
+	private CategoryRepository repository;
 
 	@GetMapping
 	public ResponseEntity<List<Category>> findAll() {
-		List<Category> list = service.findAll();
+		List<Category> list = repository.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 
